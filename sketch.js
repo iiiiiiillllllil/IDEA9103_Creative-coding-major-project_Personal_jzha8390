@@ -216,3 +216,12 @@ for (let y = y0 + v; y < y0 + sj - v / 2; y += v) {
       prevCol2 = newCol;
       rect(x0 + si, y, v, v);
     }
+    if(frameCount>300&&frameCount%60==0){
+      //Switching once per second after 5s
+         palette = []
+        createComposition();
+          for (let i = 0; i < 12; i++) {
+        let randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // 生成随机的十六进制颜色
+       palette.push(randomColor); // Add the generated color to the array
+      }  
+    }
