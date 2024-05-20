@@ -224,4 +224,27 @@ for (let y = y0 + v; y < y0 + sj - v / 2; y += v) {
         let randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // 生成随机的十六进制颜色
        palette.push(randomColor); // Add the generated color to the array
       }  
+      mainCol = '#' + Math.floor(Math.random()*16777215).toString(16)
+      allColors = [...palette.slice(1), mainCol]
     }
+    class Ball
+{
+  constructor(diam_, _angle)
+  {
+    this.center = createVector(width/2, height/2); 
+    this.dir = createVector(cos(_angle), sin(_angle));
+  this.pos = this.center.copy().add(this.dir.mult(1));
+    this.diam = diam_;
+  this.col = color(map(this.dir.heading(), -PI, PI, 0, 100), 90, 100);
+  }
+}
+move()
+  {
+  this.pos.add(this.dir);
+  const d = dist(this.pos.x,this.pos.y, this.center.x,this.center.y);
+  const s = min(width,height);
+  
+  if(d > s*0.4)this.diam = map(d,s*0.4,s*0.45,s*0.04,0,true);
+  else if(d > s*0.3)this.diam = map(d,s*0.3,s*0.4,s*0.023,s*0.042,true);
+  else this.diam = map(d,0,s*0.1,0,s*0.021,true);
+  }
